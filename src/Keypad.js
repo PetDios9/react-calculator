@@ -1,96 +1,32 @@
 import React from 'react'
 
 function Keypad(props){
+
+    let numButtons = [0,1,2,3,4,5,6,7,8,9].map(num => 
+        <div>
+            <button
+                onClick={props.handleChange}
+                value={`${num}`}
+                name={`${num}`}>
+                {num}
+            </button>
+        </div>)
+
+    let operatorButtons = ['+', '-', 'X', '/'].map(op =>     
+        <div>
+            <button
+                onClick={props.handleOperator}
+                value={`${op}`}
+                name={`${op}`}>
+                {op}
+            </button>
+        </div>)
+
     return(
         <div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="0"
-                name="0">
-                    0
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="1"
-                name="1">
-                    1
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="2"
-                name="2">
-                    2
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="3"
-                name="3">
-                    3
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="4"
-                name="4">
-                    4
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="5"
-                name="5">
-                    5
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="6"
-                name="6">
-                    6
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="7"
-                name="7">
-                    7
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="8"
-                name="8">
-                    8
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleChange}
-                value="9"
-                name="9">
-                    9
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleEqual}
-                value="="
-                name="=">
-                    =
-                </button> 
-            </div>
+            {numButtons}
+            {operatorButtons}
+            
             <div>
                 <button 
                 onClick={props.clear}
@@ -99,38 +35,16 @@ function Keypad(props){
                     CE
                 </button> 
             </div>
+
             <div>
                 <button 
-                onClick={props.handleOperator}
-                value="+"
-                name="+">
-                    +
+                onClick={props.handleEqual}
+                value="="
+                name="=">
+                    =
                 </button> 
             </div>
-            <div>
-                <button 
-                onClick={props.handleOperator}
-                value="-"
-                name="-">
-                    -
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleOperator}
-                value="X"
-                name="X">
-                    X
-                </button> 
-            </div>
-            <div>
-                <button 
-                onClick={props.handleOperator}
-                value="/"
-                name="/">
-                    /
-                </button> 
-            </div>
+
         </div>
     )
 }
