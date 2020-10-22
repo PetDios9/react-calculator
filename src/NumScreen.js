@@ -1,12 +1,31 @@
 import React from 'react'
+import 'fontsource-roboto'
+import { Grid, Typography } from '@material-ui/core'
 
 function NumScreen(props){
+    let renderedNum
+    if (props.total !== '') {
+        renderedNum = props.total
+    } else if (props.operatorPressed) {
+        renderedNum = props.secondNum
+    } else {
+        renderedNum = props.num
+    }
     return(
-    <div>
-        <h1>{`${props.num} ${props.operator} ${props.secondNum}`}</h1>
-        <br />
-        <h1>{props.total}</h1>
-    </div>
+        
+    <Grid 
+        container 
+        justify='flex-end'
+        direction='column'
+        alignItems="flex-end"
+        >
+
+        <Grid item >
+            <Typography variant="h4">
+                {renderedNum}
+            </Typography>
+        </Grid>
+    </Grid>
     
     )
 }

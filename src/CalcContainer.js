@@ -1,32 +1,53 @@
 /* eslint-disable default-case */
 import React, {useState} from 'react'
+import {Box} from '@material-ui/core'
 import KeyPad from './Keypad'
 import NumScreen from './NumScreen'
 
 function CalcContainer(){
-    let [num, setNum] = useState('')
-    let [secondNum, setSecondNum] = useState('')
+    let [num, setNum] = useState('0')
+    let [secondNum, setSecondNum] = useState('0')
     let [total, setTotal] = useState('')
     let [operator, setOperator] = useState('')
     let [operatorPressed, setOperatorPressed] = useState(false)
+    let [cButtonPressed, setCButtonPressed] = useState(false)
     
 
     function handleChange(e){
-        let {value} = e.target
+        let {value} = e.currentTarget
+
         operatorPressed ?
-        setSecondNum(prevNum => prevNum + value) :
-        setNum(prevNum => prevNum + value)
+        setSecondNum(prevNum => {
+            // eslint-disable-next-line eqeqeq
+            if (prevNum == 0){
+                setCButtonPressed(false)
+                return '' + value
+            } else {
+                setCButtonPressed(false)
+                return prevNum + value
+            }
+        }) :
+        setNum(prevNum => {
+            // eslint-disable-next-line eqeqeq
+            if (prevNum == 0){
+                setCButtonPressed(false)
+                return '' + value
+            } else {
+                setCButtonPressed(false)
+                return prevNum + value
+            }
+        })
     }
 
     function handleOperator(e){
-        let {value} = e.target
+        let {value} = e.currentTarget
         setOperator(value)
         setOperatorPressed(true)
 
         if (total !== ''){
             setNum(total)
             setOperator(value)
-            setSecondNum('')
+            setSecondNum('0')
             setTotal('')
         }
     }
@@ -51,21 +72,42 @@ function CalcContainer(){
         }     
     }
 
-    function clear(){
-        setNum('')
-        setSecondNum('')
+    function clearEverything(){
+        setNum('0')
+        setSecondNum('0')
         setTotal('')
         setOperator('')
         setOperatorPressed(false)
+       // setCButtonPressed(false)
     }
 
-    const numbuttonNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    function clear(){
+        setCButtonPressed(true)
+        operatorPressed ? setSecondNum('0') : setNum('0')
+    }
+
 
     return(
-        <div className="CalcContainer">
-            <NumScreen numbuttonNumbers={numbuttonNumbers} operator={operator} num={num} secondNum={secondNum} total={total}/>
-            <KeyPad handleEqual={handleEqual} handleOperator={handleOperator} clear={clear} handleChange={handleChange}/>
-        </div>
+        <Box border={1} width={250}>
+            
+            <NumScreen 
+            operator={operator} 
+            num={num} 
+            secondNum={secondNum} 
+            total={total} 
+            operatorPressed={operatorPressed}
+            />
+
+            <KeyPad 
+            handleEqual={handleEqual} 
+            handleOperator={handleOperator} 
+            clearEverything={clearEverything} 
+            handleChange={handleChange}
+            clear={clear}
+            cButtonPressed={cButtonPressed}
+            />
+            
+        </Box>
         
     )
 }
