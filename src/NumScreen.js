@@ -4,7 +4,7 @@ import { Grid, Typography } from '@material-ui/core'
 
 function NumScreen(props){
     let renderedNum
-    if (props.total !== '') {
+    if (props.total !== 0) {
         renderedNum = props.total
     } else if (props.operatorPressed) {
         renderedNum = props.secondNum

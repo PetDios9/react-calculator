@@ -5,9 +5,9 @@ import KeyPad from './Keypad'
 import NumScreen from './NumScreen'
 
 function CalcContainer(){
-    let [num, setNum] = useState('0')
-    let [secondNum, setSecondNum] = useState('0')
-    let [total, setTotal] = useState('')
+    let [num, setNum] = useState(0)
+    let [secondNum, setSecondNum] = useState(0)
+    let [total, setTotal] = useState(0)
     let [operator, setOperator] = useState('')
     let [operatorPressed, setOperatorPressed] = useState(false)
     let [cButtonPressed, setCButtonPressed] = useState(false)
@@ -15,28 +15,27 @@ function CalcContainer(){
 
     function handleChange(e){
         let {value} = e.currentTarget
+        console.log(value)
 
         operatorPressed ?
-        setSecondNum(prevNum => {
-            // eslint-disable-next-line eqeqeq
-            if (prevNum == 0){
-                setCButtonPressed(false)
-                return '' + value
-            } else {
-                setCButtonPressed(false)
-                return prevNum + value
-            }
-        }) :
-        setNum(prevNum => {
-            // eslint-disable-next-line eqeqeq
-            if (prevNum == 0){
-                setCButtonPressed(false)
-                return '' + value
-            } else {
-                setCButtonPressed(false)
-                return prevNum + value
-            }
-        })
+            setSecondNum(prevNum => {
+                if (prevNum === 0){
+                    setCButtonPressed(false)
+                    return value
+                } else {
+                    setCButtonPressed(false)
+                    return prevNum + value
+                }
+            }) :
+            setNum(prevNum => {
+                if (prevNum === 0){
+                    setCButtonPressed(false)
+                    return value
+                } else {
+                    setCButtonPressed(false)
+                    return prevNum + value
+                }
+            })
     }
 
     function handleOperator(e){
@@ -44,46 +43,42 @@ function CalcContainer(){
         setOperator(value)
         setOperatorPressed(true)
 
-        if (total !== ''){
+        if (total !== 0){
             setNum(total)
             setOperator(value)
-            setSecondNum('0')
-            setTotal('')
+            setSecondNum(0)
+            setTotal(0)
         }
     }
 
-    function handleEqual(e){
-        let convertedNum = parseInt(num)
-        let convertedSecNum = parseInt(secondNum)
-
+    function handleEqual(){
         switch (operator) {
             case '+':
-                setTotal(convertedNum + convertedSecNum)
+                setTotal(parseInt(num) + parseInt(secondNum))
                 break
             case '-':
-                setTotal(convertedNum - convertedSecNum)
+                setTotal(num - secondNum)
                 break
             case '/':
-                setTotal(convertedNum / convertedSecNum)
+                setTotal(num / secondNum)
                 break
             case 'X':
-                setTotal(convertedNum * convertedSecNum)
+                setTotal(num * secondNum)
                 break
         }     
     }
 
     function clearEverything(){
-        setNum('0')
-        setSecondNum('0')
-        setTotal('')
+        setNum(0)
+        setSecondNum(0)
+        setTotal(0)
         setOperator('')
         setOperatorPressed(false)
-       // setCButtonPressed(false)
     }
 
     function clear(){
         setCButtonPressed(true)
-        operatorPressed ? setSecondNum('0') : setNum('0')
+        operatorPressed ? setSecondNum(0) : setNum(0)
     }
 
 

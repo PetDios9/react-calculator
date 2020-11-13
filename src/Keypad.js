@@ -21,8 +21,7 @@ function Keypad(props){
                 variant="contained"
                 color="primary"
                 onClick={props.handleChange}
-                value={`${num}`}
-                name={`${num}`}>
+                value={num}>
                 {num}
             </Button>
         </Grid>)
@@ -95,10 +94,7 @@ function Keypad(props){
 
                 {numButtons}
                 {operatorButtons}
-                {props.cButtonPressed ?
-                    ceButton:
-                    cButton
-                }
+                {props.cButtonPressed ? ceButton : cButton}
                 {equalButton}
 
             </Grid>
