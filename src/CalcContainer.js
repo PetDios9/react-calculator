@@ -11,35 +11,37 @@ function CalcContainer(){
     let [operator, setOperator] = useState('')
     let [operatorPressed, setOperatorPressed] = useState(false)
     let [cButtonPressed, setCButtonPressed] = useState(false)
-    
 
-    function handleChange(e){
-        let {value} = e.currentTarget
-        console.log(value)
+    function renderFirstNum(event) {
+        let {value} = event.currentTarget
 
-        operatorPressed ?
-            setSecondNum(prevNum => {
-                if (prevNum === 0){
-                    setCButtonPressed(false)
-                    return value
-                } else {
-                    setCButtonPressed(false)
-                    return prevNum + value
-                }
-            }) :
-            setNum(prevNum => {
-                if (prevNum === 0){
-                    setCButtonPressed(false)
-                    return value
-                } else {
-                    setCButtonPressed(false)
-                    return prevNum + value
-                }
-            })
+        setNum(prevNum => {
+            if (prevNum === 0){
+                return value
+            } else {
+                return prevNum + value
+            }
+        })
+    }  
+
+    function renderSecondNum(event) {
+        let {value} = event.currentTarget
+        
+        setSecondNum(prevNum => {
+            if (prevNum === 0){
+                return value
+            } else {
+                return prevNum + value
+            }
+        })
+    }  
+
+    function renderNumber(event) {
+        operatorPressed ? renderSecondNum(event) : renderFirstNum(event) 
     }
 
-    function handleOperator(e){
-        let {value} = e.currentTarget
+    function handleOperator(event){
+        let {value} = event.currentTarget
         setOperator(value)
         setOperatorPressed(true)
 
@@ -54,6 +56,7 @@ function CalcContainer(){
     function handleEqual(){
         switch (operator) {
             case '+':
+                // num variable becomes string on button press, fix later
                 setTotal(parseInt(num) + parseInt(secondNum))
                 break
             case '-':
@@ -97,7 +100,7 @@ function CalcContainer(){
             handleEqual={handleEqual} 
             handleOperator={handleOperator} 
             clearEverything={clearEverything} 
-            handleChange={handleChange}
+            renderNumber={renderNumber}
             clear={clear}
             cButtonPressed={cButtonPressed}
             />

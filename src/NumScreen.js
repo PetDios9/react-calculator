@@ -4,6 +4,7 @@ import { Grid, Typography } from '@material-ui/core'
 
 function NumScreen(props){
     let renderedNum
+
     if (props.total !== 0) {
         renderedNum = props.total
     } else if (props.operatorPressed) {
@@ -11,13 +12,14 @@ function NumScreen(props){
     } else {
         renderedNum = props.num
     }
+    
     return(
         
-    <Grid 
-        container 
-        justify='flex-end'
-        direction='column'
-        alignItems="flex-end"
+        <Grid 
+            container 
+            justify='flex-end'
+            direction='column'
+            alignItems="flex-end"
         >
 
         <Grid item >

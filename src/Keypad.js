@@ -20,7 +20,7 @@ function Keypad(props){
                 fullWidth="false"
                 variant="contained"
                 color="primary"
-                onClick={props.handleChange}
+                onClick={props.renderNumber}
                 value={num}>
                 {num}
             </Button>
