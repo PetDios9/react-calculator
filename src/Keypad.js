@@ -12,8 +12,8 @@ function Keypad(props){
     })
     let btnStyles = useBtnStyles()
 
-    let numButtons = [0,1,2,3,4,5,6,7,8,9].map(num => 
-        <Grid item xs={4}>
+    const numButtons = [0,1,2,3,4,5,6,7,8,9].map(num => 
+        <Grid item xs={3}>
             <Button
                 disableElevation
                 className={btnStyles.root}
@@ -25,8 +25,9 @@ function Keypad(props){
                 {num}
             </Button>
         </Grid>)
-    let operatorButtons = ['+', '-', 'X', '/'].map(op =>     
-            <Grid item xs={4}>
+
+    const operatorButtons = ['+', '-', 'X', '/'].map(op =>     
+            <Grid item xs={3}>
                 <Button
                     disableElevation
                     className={btnStyles.root}
@@ -39,9 +40,10 @@ function Keypad(props){
                 </Button>
             </Grid>)
     
-    let ceButton = 
-        <Grid item xs={4}>
+    const ceButton = 
+        <Grid item xs={3}>
             <Button 
+                disableElevation
                 className={btnStyles.root}
                 fullWidth="false"
                 variant="contained"
@@ -53,22 +55,22 @@ function Keypad(props){
             </Button> 
         </Grid>
 
-    let cButton = 
-        <Grid item xs={4}>
+    const cButton = 
+        <Grid item xs={3}>
             <Button 
+                disableElevation
                 className={btnStyles.root}
                 fullWidth="false"
                 variant="contained"
                 color="secondary"
                 onClick={props.clear}
-                value="C"
-                name="C">
+                value="CE"
+                name="CE">
                 C
             </Button> 
-        </Grid>
+    </Grid>
 
-
-    let equalButton =            
+    const equalButton =            
         <Grid item xs={12}>
             <Button 
                 disableElevation
@@ -94,7 +96,8 @@ function Keypad(props){
 
                 {numButtons}
                 {operatorButtons}
-                {props.cButtonPressed ? ceButton : cButton}
+                {ceButton}
+                {cButton}
                 {equalButton}
 
             </Grid>

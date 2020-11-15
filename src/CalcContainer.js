@@ -10,7 +10,6 @@ function CalcContainer(){
     let [total, setTotal] = useState(0)
     let [operator, setOperator] = useState('')
     let [operatorPressed, setOperatorPressed] = useState(false)
-    let [cButtonPressed, setCButtonPressed] = useState(false)
 
     function renderFirstNum(event) {
         let {value} = event.currentTarget
@@ -80,7 +79,6 @@ function CalcContainer(){
     }
 
     function clear(){
-        setCButtonPressed(true)
         operatorPressed ? setSecondNum(0) : setNum(0)
     }
 
@@ -102,7 +100,6 @@ function CalcContainer(){
             clearEverything={clearEverything} 
             renderNumber={renderNumber}
             clear={clear}
-            cButtonPressed={cButtonPressed}
             />
             
         </Box>
