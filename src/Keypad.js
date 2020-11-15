@@ -95,9 +95,9 @@ function Keypad(props){
             alignItems="center">
 
                 {numButtons}
-                {operatorButtons}
                 {ceButton}
                 {cButton}
+                {operatorButtons}
                 {equalButton}
 
             </Grid>
