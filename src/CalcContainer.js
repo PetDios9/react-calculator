@@ -2,19 +2,20 @@
 import React, {useState} from 'react'
 import {Box} from '@material-ui/core'
 import KeyPad from './Keypad'
-import NumScreen from './NumScreen'
+import NumScreen from './NumScreenContainer'
 
 function CalcContainer(){
-    let [num, setNum] = useState(0)
+    let [firstNum, setFirstNum] = useState(0)
     let [secondNum, setSecondNum] = useState(0)
     let [total, setTotal] = useState(0)
     let [operator, setOperator] = useState('')
     let [operatorPressed, setOperatorPressed] = useState(false)
 
     function renderFirstNum(event) {
+
         let {value} = event.currentTarget
 
-        setNum(prevNum => {
+        setFirstNum(prevNum => {
             if (prevNum === 0){
                 return value
             } else {
@@ -24,6 +25,7 @@ function CalcContainer(){
     }  
 
     function renderSecondNum(event) {
+        
         let {value} = event.currentTarget
         
         setSecondNum(prevNum => {
@@ -45,7 +47,7 @@ function CalcContainer(){
         setOperatorPressed(true)
 
         if (total !== 0){
-            setNum(total)
+            setFirstNum(total)
             setOperator(value)
             setSecondNum(0)
             setTotal(0)
@@ -56,22 +58,22 @@ function CalcContainer(){
         switch (operator) {
             case '+':
                 // num variable becomes string on button press, fix later
-                setTotal(parseInt(num) + parseInt(secondNum))
+                setTotal(parseInt(firstNum) + parseInt(secondNum))
                 break
             case '-':
-                setTotal(num - secondNum)
+                setTotal(firstNum - secondNum)
                 break
             case '/':
-                setTotal(num / secondNum)
+                setTotal(firstNum / secondNum)
                 break
             case 'X':
-                setTotal(num * secondNum)
+                setTotal(firstNum * secondNum)
                 break
         }     
     }
 
     function clearEverything(){
-        setNum(0)
+        setFirstNum(0)
         setSecondNum(0)
         setTotal(0)
         setOperator('')
@@ -79,7 +81,7 @@ function CalcContainer(){
     }
 
     function clear(){
-        operatorPressed ? setSecondNum(0) : setNum(0)
+        operatorPressed ? setSecondNum(0) : setFirstNum(0)
     }
 
 
@@ -88,7 +90,7 @@ function CalcContainer(){
             
             <NumScreen 
             operator={operator} 
-            num={num} 
+            firstNum={firstNum} 
             secondNum={secondNum} 
             total={total} 
             operatorPressed={operatorPressed}
