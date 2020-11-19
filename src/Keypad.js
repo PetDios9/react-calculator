@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, makeStyles,} from '@material-ui/core'
+import { Grid, Button, makeStyles, Box} from '@material-ui/core'
 import 'fontsource-roboto'
 
 
@@ -70,6 +70,7 @@ function Keypad(props){
             </Button> 
     </Grid>
 
+
     const equalButton =            
         <Grid item xs={12}>
             <Button 
@@ -88,7 +89,7 @@ function Keypad(props){
 
 
     return(
-        <div>
+        <Box>
             <Grid container 
             spacing={0} 
             direction="row"               
@@ -101,7 +102,8 @@ function Keypad(props){
                 {equalButton}
 
             </Grid>
-        </div>)
+        </Box>
+        )
 }
 
 export default Keypad

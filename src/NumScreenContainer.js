@@ -1,7 +1,6 @@
 import React from 'react'
-import NumScreen from './NumScreen'
 import 'fontsource-roboto'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, Box} from '@material-ui/core'
 
 function NumScreenContainer(props){
     
@@ -16,21 +15,20 @@ function NumScreenContainer(props){
     }
     
     return(
-        
-        <Grid 
-        container 
-        justify='flex-end'
-        direction='column'
-        alignItems="flex-end"
-        >
-
-            <Grid item >
-                <Typography variant="h4">
-                    <NumScreen renderedNum={renderedNum} total={props.total} secondNum={props.secondNum} firstNum={props.firstNum}/>
-                </Typography>
+        <Box border={1} height={80}>
+            <Grid 
+            container 
+            direction="row"
+            justify="flex-end"
+            alignItems="center"
+            >
+                <Grid item>
+                    <Typography variant="h4">
+                        {renderedNum}
+                    </Typography> 
+                </Grid>     
             </Grid>
-        </Grid>
-    
+        </Box>
     )
 }
 

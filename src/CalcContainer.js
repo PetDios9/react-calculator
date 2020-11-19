@@ -25,7 +25,7 @@ function CalcContainer(){
     }  
 
     function renderSecondNum(event) {
-        
+
         let {value} = event.currentTarget
         
         setSecondNum(prevNum => {
@@ -86,8 +86,8 @@ function CalcContainer(){
 
 
     return(
-        <Box border={1} width={250}>
-            
+        <Box width={255}>
+
             <NumScreen 
             operator={operator} 
             firstNum={firstNum} 
@@ -102,7 +102,7 @@ function CalcContainer(){
             clearEverything={clearEverything} 
             renderNumber={renderNumber}
             clear={clear}
-            />
+            />   
             
         </Box>
         
