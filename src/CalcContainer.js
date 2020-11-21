@@ -2,7 +2,7 @@
 import React, {useState} from 'react'
 import {Box} from '@material-ui/core'
 import KeyPad from './Keypad'
-import NumScreen from './NumScreenContainer'
+import NumScreen from './NumScreen'
 
 function CalcContainer(){
     let [firstNum, setFirstNum] = useState(0)
@@ -103,7 +103,7 @@ function CalcContainer(){
             renderNumber={renderNumber}
             clear={clear}
             />   
-            
+
         </Box>
         
     )

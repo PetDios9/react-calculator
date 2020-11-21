@@ -15,7 +15,7 @@ function NumScreenContainer(props){
     }
     
     return(
-        <Box border={1} height={80}>
+        <Box border={1} height={80} display="block" overflow="hidden">
             <Grid 
             container 
             direction="row"
